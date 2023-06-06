@@ -1,3 +1,11 @@
+class InsectSurvivalException(Exception):
+    """Exception raised when an insect does not survive over winter."""
+    def __init__(self, insect):
+        """
+        Exception for insect not surviving over winter
+        """
+        message = f"{insect.name} did not survive over winter."
+        super().__init__(message)
 class Insect:
     def __init__(self, name, number_of_legs, can_fly, has_stinger, can_inject_poison):
         self.name = name
@@ -11,6 +19,8 @@ class Insect:
 
     def survive_over_winter(self):
         # Логіка виживання комахи під час зими
+        if not self.can_fly and not self.has_stinger:
+            raise InsectSurvivalException(self)
         return "Survived"
 
 

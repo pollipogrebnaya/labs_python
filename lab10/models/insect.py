@@ -14,6 +14,9 @@ class Insect(ABC):
 
     @abstractmethod
     def survive_over_winter(self):
+        # Логіка виживання комахи під час зими
+        if not self.can_fly and not self.has_stinger:
+            raise InsectSurvivalException(self)
         return "Survived"
 
     def __iter__(self):
